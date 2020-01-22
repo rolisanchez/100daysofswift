@@ -27,6 +27,8 @@ class ViewController: UITableViewController {
             }
         }
         print(pictures)
+        pictures.sort()
+        print(pictures)
 
     }
     
@@ -45,7 +47,7 @@ class ViewController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // 2: success! Set its selectedImage property
             vc.selectedImage = pictures[indexPath.row]
-            
+            vc.pictureTitle = "Picture \(indexPath.row + 1) of \(pictures.count)"
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
