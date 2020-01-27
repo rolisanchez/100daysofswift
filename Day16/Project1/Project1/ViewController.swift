@@ -34,7 +34,6 @@ class ViewController: UITableViewController {
     }
     
     @objc func shareTapped() {
-        
         let vc = UIActivityViewController(activityItems: ["Storm Viewer is so good! Try it on [LINK]!"], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)

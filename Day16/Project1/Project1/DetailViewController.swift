@@ -25,8 +25,6 @@ class DetailViewController: UIViewController {
         
         
         if let imageToLoad = selectedImage {
-            
-
             imageView.image  = UIImage(named: imageToLoad)
         }
         
