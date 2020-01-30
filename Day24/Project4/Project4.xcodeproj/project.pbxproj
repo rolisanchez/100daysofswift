@@ -13,6 +13,7 @@
 		DBBAA1F323E00B6900A443CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBAA1F123E00B6900A443CB /* Main.storyboard */; };
 		DBBAA1F523E00B6900A443CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBAA1F423E00B6900A443CB /* Assets.xcassets */; };
 		DBBAA1F823E00B6900A443CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBAA1F623E00B6900A443CB /* LaunchScreen.storyboard */; };
+		DBBAA20223E2877A00A443CB /* WebsitesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBAA20123E2877A00A443CB /* WebsitesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		DBBAA1F423E00B6900A443CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBBAA1F723E00B6900A443CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBBAA1F923E00B6900A443CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBAA20123E2877A00A443CB /* WebsitesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				DBBAA1EB23E00B6900A443CB /* AppDelegate.swift */,
 				DBBAA1ED23E00B6900A443CB /* SceneDelegate.swift */,
+				DBBAA20123E2877A00A443CB /* WebsitesTableViewController.swift */,
 				DBBAA1EF23E00B6900A443CB /* ViewController.swift */,
 				DBBAA1F123E00B6900A443CB /* Main.storyboard */,
 				DBBAA1F423E00B6900A443CB /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 				DBBAA1F023E00B6900A443CB /* ViewController.swift in Sources */,
 				DBBAA1EC23E00B6900A443CB /* AppDelegate.swift in Sources */,
 				DBBAA1EE23E00B6900A443CB /* SceneDelegate.swift in Sources */,
+				DBBAA20223E2877A00A443CB /* WebsitesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
