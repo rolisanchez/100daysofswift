@@ -15,6 +15,7 @@
 		DB09E1EC23EB1F5C00CB9CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB09E1EA23EB1F5C00CB9CCB /* LaunchScreen.storyboard */; };
 		DB09E1F423EC38D300CB9CCB /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09E1F323EC38D300CB9CCB /* Petition.swift */; };
 		DB09E1F623EC391800CB9CCB /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09E1F523EC391800CB9CCB /* Petitions.swift */; };
+		DB09E22A23ED28E500CB9CCB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09E22923ED28E500CB9CCB /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DB09E1ED23EB1F5C00CB9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB09E1F323EC38D300CB9CCB /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 		DB09E1F523EC391800CB9CCB /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
+		DB09E22923ED28E500CB9CCB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				DB09E1DF23EB1F5A00CB9CCB /* AppDelegate.swift */,
 				DB09E1E123EB1F5A00CB9CCB /* SceneDelegate.swift */,
 				DB09E1E323EB1F5A00CB9CCB /* ViewController.swift */,
+				DB09E22923ED28E500CB9CCB /* DetailViewController.swift */,
 				DB09E1F323EC38D300CB9CCB /* Petition.swift */,
 				DB09E1F523EC391800CB9CCB /* Petitions.swift */,
 				DB09E1E523EB1F5A00CB9CCB /* Main.storyboard */,
@@ -147,6 +150,7 @@
 				DB09E1E423EB1F5A00CB9CCB /* ViewController.swift in Sources */,
 				DB09E1F423EC38D300CB9CCB /* Petition.swift in Sources */,
 				DB09E1E023EB1F5A00CB9CCB /* AppDelegate.swift in Sources */,
+				DB09E22A23ED28E500CB9CCB /* DetailViewController.swift in Sources */,
 				DB09E1E223EB1F5A00CB9CCB /* SceneDelegate.swift in Sources */,
 				DB09E1F623EC391800CB9CCB /* Petitions.swift in Sources */,
 			);
