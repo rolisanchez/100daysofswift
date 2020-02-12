@@ -24,6 +24,8 @@ class ViewController: UIViewController {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    
+    var numberOfItemsMatched = 0
     var level = 1
     
     override func viewDidLoad() {
@@ -147,7 +149,8 @@ class ViewController: UIViewController {
                 // calculate the frame of this button using its column and row
                 let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
-                
+                letterButton.layer.borderColor = UIColor.lightGray.cgColor
+
                 // add it to the buttons view
                 buttonsView.addSubview(letterButton)
                 
@@ -183,12 +186,27 @@ class ViewController: UIViewController {
             
             currentAnswer.text = ""
             score += 1
-            
-            if score % 7 == 0 {
+            numberOfItemsMatched += 1
+            // Try making the game also deduct points if the player makes an incorrect guess. Think about how you can move to the next level – we can’t use a simple division remainder on the player’s score any more, because they might have lost some points.
+            if numberOfItemsMatched % 7 == 0 {
                 let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            score -= 1
+            
+            currentAnswer.text = ""
+            
+            for btn in activatedButtons {
+                btn.isHidden = false
+            }
+            
+            activatedButtons.removeAll()
+            
+            let ac = UIAlertController(title: "Try again!", message: "That is not the answer. You lost one point. Try again!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true)
         }
     }
     
@@ -208,7 +226,6 @@ class ViewController: UIViewController {
         var letterBits = [String]()
         
         if let levelFileURL = Bundle.main.url(forResource: "level\(level)", withExtension: "txt") {
-            print("levelFileURL")
             if let levelContents = try? String(contentsOf: levelFileURL) {
                 var lines = levelContents.components(separatedBy: "\n")
                 lines.shuffle()
