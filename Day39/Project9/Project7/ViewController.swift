@@ -106,21 +106,30 @@ class ViewController: UITableViewController {
 
     }
     
-    func search(_ searchText: String){
-        let lowercasedSearchText = searchText.lowercased()
-        filteredPetitions = [Petition]()
-        if searchText.isEmpty {
-            filteredPetitions = petitions
-        } else {
-            for petition in petitions {
-                let lowercasedTitle = petition.title.lowercased()
-                let lowercasedBody = petition.body.lowercased()
-                if lowercasedTitle.contains(lowercasedSearchText) || lowercasedBody.contains(lowercasedSearchText) {
-                    filteredPetitions.append(petition)
+     func search(_ searchText: String){
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let lowercasedSearchText = searchText.lowercased()
+            self?.filteredPetitions = [Petition]()
+            guard let petitions = self?.petitions else {
+                return
+            }
+            if searchText.isEmpty {
+                self?.filteredPetitions = petitions
+            } else {
+                for petition in petitions {
+                    let lowercasedTitle = petition.title.lowercased()
+                    let lowercasedBody = petition.body.lowercased()
+                    if lowercasedTitle.contains(lowercasedSearchText) || lowercasedBody.contains(lowercasedSearchText) {
+                        self?.filteredPetitions.append(petition)
+                    }
                 }
             }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
-        tableView.reloadData()
+        
     }
     
 //    func parse(json: Data) {

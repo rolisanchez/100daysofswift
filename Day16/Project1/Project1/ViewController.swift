@@ -18,6 +18,10 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         
+        performSelector(inBackground: #selector(loadImages), with: nil)
+    }
+    
+    @objc func loadImages(){
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -27,10 +31,13 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-        print(pictures)
         pictures.sort()
-        print(pictures)
-
+        
+        performSelector(onMainThread: #selector(reloadTableData), with: nil, waitUntilDone: false)
+    }
+    
+    @objc func reloadTableData(){
+        tableView.reloadData()
     }
     
     @objc func shareTapped() {
