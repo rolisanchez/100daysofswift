@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vi1-0x-2uE">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Day41" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entered Letters:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1y-ZN-qxj">
+                                <rect key="frame" x="15" y="372.5" width="384" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyz-Kh-yNc">
+                                <rect key="frame" x="166.5" y="433" width="81" height="30"/>
+                                <state key="normal" title="Enter Letter"/>
+                                <connections>
+                                    <action selector="enterLetterTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="px4-NO-iCn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-RO-kmj">
+                                <rect key="frame" x="335" y="103" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fru-LD-zTW">
+                                <rect key="frame" x="15" y="103" width="57" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess Word Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qh-rD-zh5">
+                                <rect key="frame" x="137" y="311.5" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Gyz-Kh-yNc" firstAttribute="top" secondItem="I1y-ZN-qxj" secondAttribute="bottom" constant="40" id="2Gw-j0-zbT"/>
+                            <constraint firstItem="Gyz-Kh-yNc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DXy-pq-7EM"/>
+                            <constraint firstItem="I1y-ZN-qxj" firstAttribute="top" secondItem="3qh-rD-zh5" secondAttribute="bottom" constant="40" id="JBf-kc-kxK"/>
+                            <constraint firstItem="I1y-ZN-qxj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jcx-1Y-EY4"/>
+                            <constraint firstItem="3qh-rD-zh5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TAs-cf-UwI"/>
+                            <constraint firstItem="Gyz-Kh-yNc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iZ8-E3-kNz"/>
+                            <constraint firstItem="lpR-RO-kmj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="pfH-pE-zek"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lpR-RO-kmj" secondAttribute="trailing" constant="15" id="qsJ-mk-fwt"/>
+                            <constraint firstItem="I1y-ZN-qxj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="uSA-XQ-Rwl"/>
+                            <constraint firstItem="Fru-LD-zTW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="ueK-eo-tg5"/>
+                            <constraint firstItem="Fru-LD-zTW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="yFG-PV-AwM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="I1y-ZN-qxj" secondAttribute="trailing" constant="15" id="ztt-a5-jup"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="P2G-0B-Pfa"/>
+                    <connections>
+                        <outlet property="enteredLetters" destination="I1y-ZN-qxj" id="TyU-C1-D23"/>
+                        <outlet property="guessWordLabel" destination="3qh-rD-zh5" id="kqH-5v-OZk"/>
+                        <outlet property="levellLabel" destination="Fru-LD-zTW" id="gsS-k3-EnO"/>
+                        <outlet property="scoreLabel" destination="lpR-RO-kmj" id="dRg-O1-nTl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bma-59-TfC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vi1-0x-2uE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XaY-4V-0k2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vPk-fp-sUt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2rW-Av-Xbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+</document>
