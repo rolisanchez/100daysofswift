@@ -14,6 +14,7 @@
 		DB39886723F90A2500539FA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB39886623F90A2500539FA7 /* Assets.xcassets */; };
 		DB39886A23F90A2500539FA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB39886823F90A2500539FA7 /* LaunchScreen.storyboard */; };
 		DB39887223F944FD00539FA7 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39887123F944FD00539FA7 /* PersonCell.swift */; };
+		DB39887623FA624600539FA7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39887523FA624600539FA7 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DB39886923F90A2500539FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB39886B23F90A2500539FA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB39887123F944FD00539FA7 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		DB39887523FA624600539FA7 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				DB39885D23F90A2300539FA7 /* AppDelegate.swift */,
 				DB39885F23F90A2300539FA7 /* SceneDelegate.swift */,
 				DB39886123F90A2300539FA7 /* ViewController.swift */,
+				DB39887523FA624600539FA7 /* Person.swift */,
 				DB39887123F944FD00539FA7 /* PersonCell.swift */,
 				DB39886323F90A2300539FA7 /* Main.storyboard */,
 				DB39886623F90A2500539FA7 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB39887623FA624600539FA7 /* Person.swift in Sources */,
 				DB39886223F90A2300539FA7 /* ViewController.swift in Sources */,
 				DB39885E23F90A2300539FA7 /* AppDelegate.swift in Sources */,
 				DB39887223F944FD00539FA7 /* PersonCell.swift in Sources */,
