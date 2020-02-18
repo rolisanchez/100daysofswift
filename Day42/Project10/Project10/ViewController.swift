@@ -15,13 +15,16 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
-
+        collectionView.backgroundColor = .black
     }
     // MARK: Functions
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+        }
         present(picker, animated: true)
     }
     
@@ -55,21 +58,47 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let person = people[indexPath.item]
+        let index = indexPath.item
+        let person = people[index]
         
+        let ac = UIAlertController(title: "Choose action", message: nil, preferredStyle: .alert)
+        let renameAction = UIAlertAction(title: "Rename person", style: .default) { (UIAlertAction) in
+            self.renamePerson(person: person)
+        }
+        
+        ac.addAction(renameAction)
+        
+        let deleteActon = UIAlertAction(title: "Delete person", style: .destructive) { (UIAlertAction) in
+            self.deletePerson(personIndex: index)
+        }
+        
+        ac.addAction(deleteActon)
+        
+        present(ac, animated: true)
+    }
+    
+    func renamePerson(person: Person){
         let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
         ac.addTextField()
         
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        ac.addAction(cancelAction)
         
-        ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
+        let renameAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
+            print("renameAction")
             guard let newName = ac?.textFields?[0].text else { return }
             person.name = newName
             
             self?.collectionView.reloadData()
-        })
+        }
+        ac.addAction(renameAction)
         
-        present(ac, animated: true)
+        self.present(ac, animated: true)
+    }
+    
+    func deletePerson(personIndex: Int){
+        people.remove(at: personIndex)
+        self.collectionView.reloadData()
     }
 
 
