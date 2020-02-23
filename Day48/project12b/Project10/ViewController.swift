@@ -16,6 +16,18 @@ class ViewController: UICollectionViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
         collectionView.backgroundColor = .black
+        
+        let defaults = UserDefaults.standard
+        
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                people = try jsonDecoder.decode([Person].self, from: savedPeople)
+            } catch {
+                print("Failed to load people")
+            }
+        }
     }
     // MARK: Functions
     @objc func addNewPerson() {
@@ -90,6 +102,7 @@ class ViewController: UICollectionViewController {
             person.name = newName
             
             self?.collectionView.reloadData()
+            self?.save()
         }
         ac.addAction(renameAction)
         
@@ -99,6 +112,18 @@ class ViewController: UICollectionViewController {
     func deletePerson(personIndex: Int){
         people.remove(at: personIndex)
         self.collectionView.reloadData()
+        save()
+    }
+    
+    // Save to User Defaults
+    func save() {
+        let jsonEncoder = JSONEncoder()
+        if let savedData = try? jsonEncoder.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        } else {
+            print("Failed to save people.")
+        }
     }
 
 
@@ -119,7 +144,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let person = Person(name: "Unknown", image: imageName)
         people.append(person)
         collectionView.reloadData()
-        
+        save()
         dismiss(animated: true)
     }
     
@@ -127,4 +152,5 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
+    
 }

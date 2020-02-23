@@ -11,7 +11,9 @@ import UIKit
 class ViewController: UITableViewController {
 
     var allWords = [String]()
-    var usedWords = [String]()
+//    var usedWords = [String]()
+    
+    var usedWords: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +30,17 @@ class ViewController: UITableViewController {
         if allWords.isEmpty {
             allWords = ["silkworm"]
         }
-        
+         
         startGame()
     
     }
     
     @objc func startGame() {
         title = allWords.randomElement()
-        usedWords.removeAll(keepingCapacity: true)
+//        usedWords.removeAll(keepingCapacity: true)
+        let defaults = UserDefaults.standard
+        let readArray = defaults.object(forKey:"usedWords") as? [String] ?? [String]()
+        usedWords = readArray
         tableView.reloadData()
     }
     
@@ -59,6 +64,8 @@ class ViewController: UITableViewController {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
                     usedWords.insert(answer.lowercased(), at: 0)
+                    let defaults = UserDefaults.standard
+                    defaults.set(usedWords, forKey: "usedWords")
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
@@ -83,6 +90,7 @@ class ViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
     }
+    
     func isPossible(word: String) -> Bool {
         guard var tempWord = title?.lowercased() else { return false }
         

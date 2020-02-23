@@ -61,7 +61,10 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
         correctAnswer = Int.random(in: 0...2)
-        title = "Guess: " + countries[correctAnswer].uppercased() + " ~ Current Score: \(score)"
+        let defaults = UserDefaults.standard
+
+        let maxScore = defaults.integer(forKey: "maxScore")
+        title = "Guess: " + countries[correctAnswer].uppercased() + " ~ Current: \(score) ~ Max: \(maxScore)"
         
         questionsAsked += 1
 
@@ -69,12 +72,19 @@ class ViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
+        let defaults = UserDefaults.standard
+        var maxScore = defaults.integer(forKey: "maxScore")
         
         if sender.tag == correctAnswer {
-            title = "Correct!"
             score += 1
+            if score > maxScore {
+                maxScore = score
+                defaults.set(maxScore, forKey: "maxScore")
+            }
+            title = "Correct! ~ Max: \(maxScore)"
+            
         } else {
-            title = "Wrong! That's the flag of \(countries[sender.tag].uppercased())"
+            title = "Wrong! That's the flag of \(countries[sender.tag].uppercased()) ~ Max: \(maxScore)"
             score -= 1
         }
         

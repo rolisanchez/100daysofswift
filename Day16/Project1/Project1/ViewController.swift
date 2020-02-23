@@ -60,8 +60,13 @@ class ViewController: UITableViewController {
         // 1: try loading the "Detail" view controller and typecasting it to be DetailViewController
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // 2: success! Set its selectedImage property
-            vc.selectedImage = pictures[indexPath.row]
-            vc.pictureTitle = "Picture \(indexPath.row + 1) of \(pictures.count)"
+            let imageName = pictures[indexPath.row]
+            vc.selectedImage = imageName
+            let defaults = UserDefaults.standard
+            var seenTimes = defaults.integer(forKey: imageName)
+            seenTimes += 1
+            defaults.set(seenTimes, forKey: imageName)
+            vc.pictureTitle = "Picture \(indexPath.row + 1) of \(pictures.count). Viewed \(seenTimes) times"
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }

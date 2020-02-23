@@ -26,3 +26,4 @@ let falseReadArray = defaults.object(forKey:"falseReadArray") as? [String] ?? [S
 print("falseReadArray \(falseReadArray)")
 
 let readDict = defaults.object(forKey: "SavedDict") as? [String: String] ?? [String: String]()
+
