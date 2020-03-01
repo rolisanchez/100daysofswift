@@ -17,6 +17,9 @@
 		DB27A955240A557E00DD1DBA /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = DB27A954240A557A00DD1DBA /* whack.caf */; };
 		DB27A956240A558000DD1DBA /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = DB27A953240A557A00DD1DBA /* whackBad.caf */; };
 		DB27A958240A57B700DD1DBA /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27A957240A57B700DD1DBA /* WhackSlot.swift */; };
+		DB538EB1240BBDF300707882 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB538EB0240BBDF300707882 /* gameover.mp3 */; };
+		DB538EB3240BBF8E00707882 /* PenguinSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = DB538EB2240BBF8E00707882 /* PenguinSmoke.sks */; };
+		DB538EB7240BC21800707882 /* MudParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = DB538EB6240BC21800707882 /* MudParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		DB27A953240A557A00DD1DBA /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 		DB27A954240A557A00DD1DBA /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		DB27A957240A57B700DD1DBA /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
+		DB538EB0240BBDF300707882 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameover.mp3; sourceTree = "<group>"; };
+		DB538EB2240BBF8E00707882 /* PenguinSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PenguinSmoke.sks; sourceTree = "<group>"; };
+		DB538EB6240BC21800707882 /* MudParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MudParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +75,13 @@
 				DB27A941240A54E800DD1DBA /* GameScene.swift */,
 				DB27A957240A57B700DD1DBA /* WhackSlot.swift */,
 				DB27A943240A54E800DD1DBA /* GameViewController.swift */,
+				DB538EB6240BC21800707882 /* MudParticle.sks */,
+				DB538EB2240BBF8E00707882 /* PenguinSmoke.sks */,
 				DB27A945240A54E800DD1DBA /* Main.storyboard */,
 				DB27A948240A54E900DD1DBA /* Assets.xcassets */,
 				DB27A94A240A54E900DD1DBA /* LaunchScreen.storyboard */,
 				DB27A94D240A54E900DD1DBA /* Info.plist */,
+				DB538EB0240BBDF300707882 /* gameover.mp3 */,
 				DB27A954240A557A00DD1DBA /* whack.caf */,
 				DB27A953240A557A00DD1DBA /* whackBad.caf */,
 			);
@@ -137,9 +146,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB538EB7240BC21800707882 /* MudParticle.sks in Resources */,
+				DB538EB1240BBDF300707882 /* gameover.mp3 in Resources */,
 				DB27A947240A54E800DD1DBA /* Main.storyboard in Resources */,
 				DB27A955240A557E00DD1DBA /* whack.caf in Resources */,
 				DB27A93E240A54E800DD1DBA /* GameScene.sks in Resources */,
+				DB538EB3240BBF8E00707882 /* PenguinSmoke.sks in Resources */,
 				DB27A949240A54E900DD1DBA /* Assets.xcassets in Resources */,
 				DB27A94C240A54E900DD1DBA /* LaunchScreen.storyboard in Resources */,
 				DB27A956240A558000DD1DBA /* whackBad.caf in Resources */,
