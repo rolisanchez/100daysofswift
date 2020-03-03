@@ -13,8 +13,8 @@
 		DB39883D23F80EB200539FA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB39883B23F80EB200539FA7 /* Main.storyboard */; };
 		DB39883F23F80EB400539FA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB39883E23F80EB400539FA7 /* Assets.xcassets */; };
 		DB39884223F80EB400539FA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB39884023F80EB400539FA7 /* LaunchScreen.storyboard */; };
-		DB39884A23F811F100539FA7 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB39884923F811F100539FA7 /* level1.txt */; };
-		DB39884C23F81E5400539FA7 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB39884B23F81E5400539FA7 /* level2.txt */; };
+		DB4BD128240DFB73006FE01B /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB4BD127240DFB73006FE01B /* level1.txt */; };
+		DB4BD12A240DFB81006FE01B /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB4BD129240DFB81006FE01B /* level2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		DB39883E23F80EB400539FA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB39884123F80EB400539FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB39884323F80EB400539FA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB39884923F811F100539FA7 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level1.txt; path = ../../../Day36/Project8/Project8/level1.txt; sourceTree = "<group>"; };
-		DB39884B23F81E5400539FA7 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level2.txt; path = ../../../Day36/Project8/Project8/level2.txt; sourceTree = "<group>"; };
+		DB4BD127240DFB73006FE01B /* level1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		DB4BD129240DFB81006FE01B /* level2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +63,10 @@
 				DB39883523F80EB200539FA7 /* AppDelegate.swift */,
 				DB39883723F80EB200539FA7 /* SceneDelegate.swift */,
 				DB39883923F80EB200539FA7 /* ViewController.swift */,
+				DB4BD127240DFB73006FE01B /* level1.txt */,
+				DB4BD129240DFB81006FE01B /* level2.txt */,
 				DB39883B23F80EB200539FA7 /* Main.storyboard */,
 				DB39883E23F80EB400539FA7 /* Assets.xcassets */,
-				DB39884923F811F100539FA7 /* level1.txt */,
-				DB39884B23F81E5400539FA7 /* level2.txt */,
 				DB39884023F80EB400539FA7 /* LaunchScreen.storyboard */,
 				DB39884323F80EB400539FA7 /* Info.plist */,
 			);
@@ -131,9 +131,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB39884C23F81E5400539FA7 /* level2.txt in Resources */,
+				DB4BD12A240DFB81006FE01B /* level2.txt in Resources */,
 				DB39884223F80EB400539FA7 /* LaunchScreen.storyboard in Resources */,
-				DB39884A23F811F100539FA7 /* level1.txt in Resources */,
+				DB4BD128240DFB73006FE01B /* level1.txt in Resources */,
 				DB39883F23F80EB400539FA7 /* Assets.xcassets in Resources */,
 				DB39883D23F80EB200539FA7 /* Main.storyboard in Resources */,
 			);

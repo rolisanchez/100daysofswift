@@ -134,6 +134,9 @@ class ViewController: UIViewController {
         if let cgimg = context.createCGImage(image, from: image.extent) {
             let processedImage = UIImage(cgImage: cgimg)
             imageView.image = processedImage
+            UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+                self.imageView.alpha = 1
+            })
         }
     }
     
@@ -151,7 +154,7 @@ class ViewController: UIViewController {
         
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
-        
+
         applyProcessing()
     }
 }
@@ -161,7 +164,11 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         guard let image = info[.editedImage] as? UIImage else { return }
         
         dismiss(animated: true)
-        
+
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+            self.imageView.alpha = 0
+        })
+
         currentImage = image
         
         let beginImage = CIImage(image: currentImage)
