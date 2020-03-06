@@ -14,6 +14,7 @@
 		DB41117C2410AF8000186713 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB41117B2410AF8000186713 /* Assets.xcassets */; };
 		DB41117F2410AF8000186713 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB41117D2410AF8000186713 /* LaunchScreen.storyboard */; };
 		DB4111872410B08A00186713 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4111862410B08A00186713 /* Capital.swift */; };
+		DB41118F2411CF4000186713 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41118E2411CF4000186713 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DB41117E2410AF8000186713 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB4111802410AF8000186713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB4111862410B08A00186713 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		DB41118E2411CF4000186713 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				DB4111722410AF7F00186713 /* AppDelegate.swift */,
 				DB4111742410AF7F00186713 /* SceneDelegate.swift */,
 				DB4111762410AF7F00186713 /* ViewController.swift */,
+				DB41118E2411CF4000186713 /* DetailViewController.swift */,
 				DB4111782410AF7F00186713 /* Main.storyboard */,
 				DB4111862410B08A00186713 /* Capital.swift */,
 				DB41117B2410AF8000186713 /* Assets.xcassets */,
@@ -143,6 +146,7 @@
 			files = (
 				DB4111772410AF7F00186713 /* ViewController.swift in Sources */,
 				DB4111732410AF7F00186713 /* AppDelegate.swift in Sources */,
+				DB41118F2411CF4000186713 /* DetailViewController.swift in Sources */,
 				DB4111872410B08A00186713 /* Capital.swift in Sources */,
 				DB4111752410AF7F00186713 /* SceneDelegate.swift in Sources */,
 			);
