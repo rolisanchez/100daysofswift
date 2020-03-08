@@ -21,12 +21,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var timeInterval = 1.0
+    var enemiesCount = 0
+    
     let possibleEnemies = ["ball", "hammer", "tv"]
     var isGameOver = false
     var gameTimer: Timer?
     
+        
     // MARK: Lifecycle Methods
     override func didMove(to view: SKView) {
+        
         backgroundColor = .black
         
         starfield = SKEmitterNode(fileNamed: "starfield")!
@@ -51,7 +56,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        
 
     }
     
@@ -71,15 +77,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         var location = touch.location(in: self)
-        
+
         if location.y < 100 {
             location.y = 100
         } else if location.y > 668 {
             location.y = 668
         }
         
-        player.position = location
+        if CGPointDistance(from: player.position, to: location) < 40 {
+            player.position = location
+        }
+        
     }
+    
+    
+
     
     func didBegin(_ contact: SKPhysicsContact) {
         let explosion = SKEmitterNode(fileNamed: "explosion")!
@@ -93,8 +105,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Other Methods
     @objc func createEnemy() {
+        guard isGameOver == false else { return }
         guard let enemy = possibleEnemies.randomElement() else { return }
         
+        if enemiesCount == 20 {
+            timeInterval -= 0.1
+            gameTimer?.invalidate()
+            gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+            enemiesCount = 0
+        }
+        
+        enemiesCount += 1
+                
         let sprite = SKSpriteNode(imageNamed: enemy)
         sprite.position = CGPoint(x: 1200, y: Int.random(in: 50...736))
         addChild(sprite)
@@ -107,4 +129,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.angularDamping = 0
     }
 
+    func CGPointDistanceSquared(from: CGPoint, to: CGPoint) -> CGFloat {
+        return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)
+    }
+    
+    func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+        return sqrt(CGPointDistanceSquared(from: from, to: to))
+    }
 }
