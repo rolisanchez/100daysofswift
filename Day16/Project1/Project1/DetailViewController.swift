@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.largeTitleDisplayMode = .never
+        assert(selectedImage != nil)
 //        title = "View Picture"
 //        title = selectedImage
         title = pictureTitle
