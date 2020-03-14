@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB70BC9B241C558B002F2857 /* ScriptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB70BC9A241C558B002F2857 /* ScriptsTableViewController.swift */; };
 		DB75EA59241A0F990061D8E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB75EA58241A0F990061D8E1 /* AppDelegate.swift */; };
 		DB75EA5B241A0F990061D8E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB75EA5A241A0F990061D8E1 /* SceneDelegate.swift */; };
 		DB75EA5D241A0F990061D8E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB75EA5C241A0F990061D8E1 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB70BC9A241C558B002F2857 /* ScriptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptsTableViewController.swift; sourceTree = "<group>"; };
 		DB75EA55241A0F990061D8E1 /* Project19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB75EA58241A0F990061D8E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB75EA5A241A0F990061D8E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				DB75EA72241A10450061D8E1 /* Media.xcassets */,
 				DB75EA74241A10450061D8E1 /* ActionViewController.swift */,
+				DB70BC9A241C558B002F2857 /* ScriptsTableViewController.swift */,
 				DB75EA76241A10450061D8E1 /* MainInterface.storyboard */,
 				DB75EA79241A10450061D8E1 /* Info.plist */,
 				DB75EA81241A14020061D8E1 /* Action.js */,
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB70BC9B241C558B002F2857 /* ScriptsTableViewController.swift in Sources */,
 				DB75EA75241A10450061D8E1 /* ActionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
