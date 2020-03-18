@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -35,7 +35,12 @@ class ViewController: UIViewController {
         setupCountries()
         askQuestion()
         // askQuestion(action: nil)= nil
+        registerLocal()
+        
+        
     }
+    
+
     
     func setupCountries(){
 //        countries.append("estonia")
@@ -117,6 +122,106 @@ class ViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
         present(ac, animated: true)
     }
+    
+    
+    func registerLocal() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+                self.scheduleLocal()
+            } else {
+                print("D'oh")
+            }
+        }
+    }
+    
+    // MARK: Notifications
+    func scheduleLocal() {
+        let center = UNUserNotificationCenter.current()
+        
+        
+        // Cancel all previously scheduled
+        center.removeAllPendingNotificationRequests()
+        // Cancel all previously scheduled
+        
+        registerCategories()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Come back to COUNTRIES"
+        content.body = "Remember to come back and play your favorite game"
+        content.categoryIdentifier = "weeklyAlarm"
+        content.userInfo = ["customData": "fizzbuzz"]
+        content.sound = UNNotificationSound.defaultCritical
+        
+        // Set for all days in week
+        for i in 1...7 {
+            var dateComponents = DateComponents()
+            dateComponents.hour = 14
+            dateComponents.minute = 57
+            // sunday = 1 ... saturday = 7
+            dateComponents.weekday = i
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request)
+        }
+        
+        print("scheduleLocal succesful")
+    }
+    
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let show = UNNotificationAction(identifier: "comingback", title: "I'm coming back!", options: .foreground)
+        
+        let category = UNNotificationCategory(identifier: "weeklyAlarm", actions: [show], intentIdentifiers: [])
+        
+        center.setNotificationCategories([category])
+    }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("userNotificationCenter")
+        // pull out the buried userInfo dictionary
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let customData = userInfo["customData"] as? String {
+            print("Custom data received: \(customData)")
+            
+            switch response.actionIdentifier {
+                case UNNotificationDefaultActionIdentifier:
+                    // the user swiped to unlock
+                    print("Default identifier")
+                    
+                    let ac = UIAlertController(title: "Welcome", message: "Welcome back!", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+                        self.scheduleLocal()
+                    }
+                    
+                    ac.addAction(okAction)
+                    
+                    present(ac, animated: true)
+                case "comingback":
+                    print("Coming back")
+                    let ac = UIAlertController(title: "Welcome", message: "Welcome back!", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+                        self.scheduleLocal()
+                    }
+                    
+                    ac.addAction(okAction)
+                    
+                    present(ac, animated: true)
+                default:
+                    break
+            }
+        }
+        completionHandler()
+        
+    }
+        
 }
 

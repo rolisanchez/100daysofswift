@@ -76,14 +76,25 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         center.delegate = self
         
         let show = UNNotificationAction(identifier: "show", title: "Tell me more…", options: .foreground)
-        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        let remind = UNNotificationAction(identifier: "remind", title: "Remind me later!", options: .foreground)
+        
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, remind], intentIdentifiers: [])
         
         center.setNotificationCategories([category])
     }
     
     // MARK: UNUserNotificationCenterDelegate
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Update the app interface directly.
+        print("willPresent")
+        // Play a sound.
+        completionHandler(UNNotificationPresentationOptions.sound)
+    }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("userNotificationCenter")
         // pull out the buried userInfo dictionary
         let userInfo = response.notification.request.content.userInfo
         
@@ -95,10 +106,42 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                     // the user swiped to unlock
                     print("Default identifier")
                 
+                    let ac = UIAlertController(title: "Default", message: "Default identifier", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "Ok", style: .default)
+                    
+                    ac.addAction(okAction)
+                    
+                    present(ac, animated: true)
+                
                 case "show":
                     // the user tapped our "show more info…" button
                     print("Show more information…")
+                    
+                    let ac = UIAlertController(title: "More", message: "More information...", preferredStyle: .alert)
                 
+                    let okAction = UIAlertAction(title: "Ok", style: .default)
+                
+                    ac.addAction(okAction)
+                
+                    present(ac, animated: true)
+                case "remind":
+                    print("Remind me later")
+                
+                    let content = UNMutableNotificationContent()
+                    content.title = "Reminder"
+                    content.body = "You asked us to remind you about this"
+                    content.categoryIdentifier = "reminder"
+                    content.userInfo = ["customData": "fizzbuzz"]
+                    content.sound = UNNotificationSound.defaultCritical
+                
+                    
+                    // Set after a specific interval
+                    // 86400 seconds = After a day
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                    center.add(request)
+
                 default:
                     break
             }
