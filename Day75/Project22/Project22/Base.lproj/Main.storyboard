@@ -15,7 +15,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNKNOWN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Et7-Tv-Gsg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YIW-pm-aGa">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YIW-pm-aGa" secondAttribute="height" multiplier="1:1" id="DvJ-Xf-Uk4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNKNOWN" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Et7-Tv-Gsg">
                                 <rect key="frame" x="111.5" y="429" width="191.5" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -25,11 +31,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Et7-Tv-Gsg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9hI-uH-3Ct"/>
+                            <constraint firstItem="YIW-pm-aGa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CeG-h1-zDX"/>
+                            <constraint firstItem="YIW-pm-aGa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ik5-2o-id6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YIW-pm-aGa" secondAttribute="trailing" id="Iv1-nh-Kpi"/>
+                            <constraint firstItem="YIW-pm-aGa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lB1-zT-6Vv"/>
                             <constraint firstItem="Et7-Tv-Gsg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="vqh-dF-u40"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="circleImageView" destination="YIW-pm-aGa" id="JMk-ab-iPT"/>
                         <outlet property="distanceReading" destination="Et7-Tv-Gsg" id="mfX-1Z-hVK"/>
                     </connections>
                 </viewController>
