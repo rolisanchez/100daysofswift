@@ -150,6 +150,38 @@ class GameScene: SKScene {
                 
                 // 8
                 run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+            } else if node.name == "enemyDouble" {
+                // 1
+                if let emitter = SKEmitterNode(fileNamed: "sliceHitEnemy") {
+                    emitter.position = node.position
+                    addChild(emitter)
+                }
+                
+                // 2
+                node.name = ""
+                
+                // 3
+                node.physicsBody?.isDynamic = false
+                
+                // 4
+                let scaleOut = SKAction.scale(to: 0.001, duration:0.2)
+                let fadeOut = SKAction.fadeOut(withDuration: 0.2)
+                let group = SKAction.group([scaleOut, fadeOut])
+                
+                // 5
+                let seq = SKAction.sequence([group, .removeFromParent()])
+                node.run(seq)
+                
+                // 6
+                score += 3
+                
+                // 7
+                if let index = activeEnemies.firstIndex(of: node) {
+                    activeEnemies.remove(at: index)
+                }
+                
+                // 8
+                run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
             } else if node.name == "bomb" {
                 guard let bombContainer = node.parent as? SKSpriteNode else { continue }
                 
@@ -172,6 +204,7 @@ class GameScene: SKScene {
                     activeEnemies.remove(at: index)
                 }
                 
+                bombSoundEffect?.stop()
                 run(SKAction.playSoundFileNamed("explosion.caf", waitForCompletion: false))
                 endGame(triggeredByBomb: true)
             }
@@ -189,7 +222,7 @@ class GameScene: SKScene {
                 if node.position.y < -140 {
                     node.removeAllActions()
                     
-                    if node.name == "enemy" {
+                    if node.name == "enemy" || node.name == "enemyDouble" {
                         node.name = ""
                         subtractLife()
                         
@@ -306,17 +339,23 @@ class GameScene: SKScene {
     }
     
     func createEnemy(forceBomb: ForceBomb = .random) {
+        let ALWAYS_FORCE_BOMB = 0
+        let NEVER_FORCE_BOMB = 1
+        let ENEMY_DOUBLE = 2
+        
         let enemy: SKSpriteNode
         
         var enemyType = Int.random(in: 0...6)
         
         if forceBomb == .never {
-            enemyType = 1
+            enemyType = NEVER_FORCE_BOMB
         } else if forceBomb == .always {
-            enemyType = 0
+            enemyType = ALWAYS_FORCE_BOMB
         }
         
-        if enemyType == 0 {
+        
+        
+        if enemyType == ALWAYS_FORCE_BOMB {
             // 1
             enemy = SKSpriteNode()
             enemy.zPosition = 1
@@ -346,10 +385,15 @@ class GameScene: SKScene {
                 emitter.position = CGPoint(x: 76, y: 64)
                 enemy.addChild(emitter)
             }
+        } else if enemyType == ENEMY_DOUBLE {
+            enemy = SKSpriteNode(imageNamed: "penguinEvil")
+            run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
+            enemy.name = "enemyDouble"
         } else {
             enemy = SKSpriteNode(imageNamed: "penguin")
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             enemy.name = "enemy"
+            
         }
         
         // 1
@@ -469,6 +513,12 @@ class GameScene: SKScene {
         if isGameEnded {
             return
         }
+        
+        let gameOver = SKSpriteNode(imageNamed: "gameOver")
+        gameOver.position = CGPoint(x: 512, y: 384)
+        gameOver.zPosition = 1
+        
+        addChild(gameOver)
         
         isGameEnded = true
         physicsWorld.speed = 0
