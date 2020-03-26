@@ -102,3 +102,32 @@ attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 16), range
 attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 24), range: NSRange(location: 8, length: 1))
 attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 32), range: NSRange(location: 10, length: 4))
 attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: NSRange(location: 15, length: 6))
+
+
+extension String {
+    func withPrefix(_ prefix: String) -> String {
+        if self.hasPrefix(prefix) { return self }
+        return prefix+self
+    }
+}
+
+"pet".withPrefix("car")
+"pet".withPrefix("mup")
+"carpet".withPrefix("car")
+
+extension String {
+    func isNumeric() -> Bool {
+        return Double(self) != nil ? true : false
+    }
+}
+
+"23".isNumeric()
+"1a".isNumeric()
+
+extension String {
+    func lines() -> [String] {
+        return self.components(separatedBy: .newlines)
+    }
+}
+
+"this\nis\na\ntest".lines()
