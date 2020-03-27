@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Day82ViewChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qH-sN-MKa">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5qH-sN-MKa" secondAttribute="height" multiplier="1:1" id="wbi-YU-0SL"/>
+                                    <constraint firstAttribute="height" constant="200" id="znJ-0O-X5T"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2N-MO-sf7">
+                                <rect key="frame" x="160" y="573" width="94" height="30"/>
+                                <state key="normal" title="Animate View"/>
+                                <connections>
+                                    <action selector="animateViewPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O72-Tk-Yu6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="s2N-MO-sf7" firstAttribute="centerX" secondItem="5qH-sN-MKa" secondAttribute="centerX" id="WfX-Jk-t0e"/>
+                            <constraint firstItem="5qH-sN-MKa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a49-Tf-YAu"/>
+                            <constraint firstItem="5qH-sN-MKa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eSC-Pr-Cnc"/>
+                            <constraint firstItem="s2N-MO-sf7" firstAttribute="top" secondItem="5qH-sN-MKa" secondAttribute="bottom" constant="25" id="eqW-yg-N0O"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="animatableView" destination="5qH-sN-MKa" id="ovb-l5-M5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="134"/>
+        </scene>
+    </scenes>
+</document>
