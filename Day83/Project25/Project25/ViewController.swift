@@ -22,8 +22,16 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         
         title = "Selfie Share"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(importPicture))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showConnectionPrompt))
+        // Right Bar Button Items
+        let sharePhotoButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(importPicture))
+        let shareTextButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(shareText))
+        navigationItem.rightBarButtonItems = [sharePhotoButton, shareTextButton]
+        
+        // Left Bar Button Items
+        let addConnectionButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showConnectionPrompt))
+        let showConnectionButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showConnections))
+
+        navigationItem.leftBarButtonItems = [addConnectionButton, showConnectionButton]
         
         mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
         mcSession?.delegate = self
@@ -53,12 +61,58 @@ class ViewController: UICollectionViewController {
         present(picker, animated: true)
     }
     
+    @objc func shareText() {
+        let ac = UIAlertController(title: "Share Text", message: "Write what you want to share", preferredStyle: .alert)
+        ac.addTextField()
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac, weak self] _ in
+            let answer = ac.textFields![0]
+            
+            guard let answerText = answer.text else { return }
+            guard let mcSession = self?.mcSession else { return }
+            
+            if mcSession.connectedPeers.count > 0 {
+                let textData = Data(answerText.utf8)
+                do {
+                    try mcSession.send(textData, toPeers: mcSession.connectedPeers, with: .reliable)
+                } catch {
+                    let ac = UIAlertController(title: "Send error", message: error.localizedDescription, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(ac, animated: true)
+                }
+            }
+        }
+        ac.addAction(submitAction)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(ac, animated: true)
+    }
+    
     @objc func showConnectionPrompt() {
         let ac = UIAlertController(title: "Connect to others", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Host a session", style: .default, handler: startHosting))
         ac.addAction(UIAlertAction(title: "Join a session", style: .default, handler: joinSession))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
+    }
+    
+    
+    @objc func showConnections() {
+        if let mcSession = mcSession {
+            let connectedPeers = mcSession.connectedPeers
+            var peerDisplayNames = [String]()
+            for peerID in connectedPeers {
+                peerDisplayNames.append(peerID.displayName)
+            }
+            let ac = UIAlertController(title: "Current Connections", message: "Peers connected: \(peerDisplayNames)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "No Connections", message: "You are not connected to any Session", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(ac, animated: true)
+        }
+
+        
     }
     
     func startHosting(action: UIAlertAction) {
@@ -157,6 +211,12 @@ extension ViewController: MCSessionDelegate, MCBrowserViewControllerDelegate {
             
             case .notConnected:
                 print("Not Connected: \(peerID.displayName)")
+                let ac = UIAlertController(title: "Disconnection", message: "\(peerID.displayName) has disconnected", preferredStyle: .alert)
+                ac.addAction(.init(title: "Ok", style: .cancel, handler: nil))
+                DispatchQueue.main.async { [weak self] in
+                    self?.present(ac, animated: true)
+                }
+            
             
             @unknown default:
                 print("Unknown state received: \(peerID.displayName)")
@@ -175,6 +235,13 @@ extension ViewController: MCSessionDelegate, MCBrowserViewControllerDelegate {
             images.insert(image, at: 0)
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
+            }
+        } else {
+            let text = String(decoding: data, as: UTF8.self)
+            let ac = UIAlertController(title: "Received Text", message: "\(peerID.displayName) shared: \"\(text)\"", preferredStyle: .alert)
+            ac.addAction(.init(title: "Ok", style: .cancel, handler: nil))
+            DispatchQueue.main.async { [weak self] in
+                self?.present(ac, animated: true)
             }
         }
     }
