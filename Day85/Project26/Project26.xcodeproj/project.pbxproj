@@ -15,6 +15,7 @@
 		DB2E484C2431B80C00376C96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB2E484B2431B80C00376C96 /* Assets.xcassets */; };
 		DB2E484F2431B80C00376C96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2E484D2431B80C00376C96 /* LaunchScreen.storyboard */; };
 		DB2E48572431B8AC00376C96 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB2E48562431B8AC00376C96 /* level1.txt */; };
+		DB3A688924343E760031DEA9 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB3A688824343E760031DEA9 /* level2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DB2E484E2431B80C00376C96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB2E48502431B80C00376C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB2E48562431B8AC00376C96 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		DB3A688824343E760031DEA9 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				DB2E484D2431B80C00376C96 /* LaunchScreen.storyboard */,
 				DB2E48502431B80C00376C96 /* Info.plist */,
 				DB2E48562431B8AC00376C96 /* level1.txt */,
+				DB3A688824343E760031DEA9 /* level2.txt */,
 			);
 			path = Project26;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			files = (
 				DB2E48572431B8AC00376C96 /* level1.txt in Resources */,
 				DB2E484A2431B80C00376C96 /* Main.storyboard in Resources */,
+				DB3A688924343E760031DEA9 /* level2.txt in Resources */,
 				DB2E48412431B80B00376C96 /* GameScene.sks in Resources */,
 				DB2E484C2431B80C00376C96 /* Assets.xcassets in Resources */,
 				DB2E484F2431B80C00376C96 /* LaunchScreen.storyboard in Resources */,
