@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBAction func redrawTapped(_ sender: Any) {
         currentDrawType += 1
         
-        if currentDrawType > 5 {
+        if currentDrawType > 7 {
             currentDrawType = 0
         }
         
@@ -41,6 +41,10 @@ class ViewController: UIViewController {
                 drawLines()
             case 5:
                 drawImagesAndText()
+            case 6:
+                drawEmojiSmile()
+            case 7:
+                drawTwinInLines()
             default:
                 break
         }
@@ -184,5 +188,76 @@ class ViewController: UIViewController {
         // 6
         imageView.image = img
     }
+    
+    func drawEmojiSmile() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512).insetBy(dx: 5, dy: 5)
+            
+            ctx.cgContext.setFillColor(UIColor.yellow.cgColor)
+            ctx.cgContext.setStrokeColor(UIColor.brown.cgColor)
+            ctx.cgContext.setLineWidth(10)
+            
+            ctx.cgContext.addEllipse(in: rectangle)
+            ctx.cgContext.drawPath(using: .fillStroke)
+            
+            let eye1 = CGRect(x: 150, y: 150, width: 50, height: 50)
+            let eye2 = CGRect(x: 300, y: 150, width: 50, height: 50)
+
+            let mouth = CGRect(x: 200, y: 300, width: 100, height: 100)
+            
+            ctx.cgContext.setFillColor(UIColor.brown.cgColor)
+            ctx.cgContext.addEllipse(in: eye1)
+            ctx.cgContext.addEllipse(in: eye2)
+            ctx.cgContext.addEllipse(in: mouth)
+            ctx.cgContext.drawPath(using: .fillStroke)
+        }
+        
+        imageView.image = img
+
+    }
+    
+    func drawTwinInLines() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            //
+            // 512*512 Space
+            // 512 for 4 letters -> 100 for each letter, 10 spacing
+            ctx.cgContext.setLineWidth(5)
+            let inset = 10
+            let letterSpacing = 15
+            // Drawing T
+            ctx.cgContext.move(to: CGPoint(x: 0, y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 100, y: inset))
+            ctx.cgContext.move(to: CGPoint(x: 50, y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 50, y: 100+inset))
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            
+            // Drawing W
+            ctx.cgContext.move(to: CGPoint(x: 100+letterSpacing, y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 100+letterSpacing+25, y: 100+inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 100+letterSpacing+50, y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 100+letterSpacing+75, y: 100+inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 100+letterSpacing+100, y: inset))
+            
+            // Drawing I
+            ctx.cgContext.move(to: CGPoint(x: 200+(letterSpacing*2)+50, y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 200+(letterSpacing*2)+50, y: 100+inset))
+
+            // Drawing N
+            ctx.cgContext.move(to: CGPoint(x: 300+(letterSpacing*3), y: 100+inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 300+(letterSpacing*3), y: inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 300+(letterSpacing*3)+100, y: 100+inset))
+            ctx.cgContext.addLine(to: CGPoint(x: 300+(letterSpacing*3)+100, y: inset))
+            
+            ctx.cgContext.strokePath()
+        }
+        
+        imageView.image = img
+    }
+
+    
 }
 

@@ -43,12 +43,35 @@ class DetailViewController: UIViewController {
     }
 
     @objc func shareTapped() {
-        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
-            print("No image found")
+//        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+//            print("No image found")
+//            return
+//        }
+        
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let renderedImage = renderer.image { ctx in
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 36),
+                .paragraphStyle: paragraphStyle
+            ]
+            
+            let string = "From Storm Viewer"
+            let attributedString = NSAttributedString(string: string, attributes: attrs)
+            
+            imageView.image?.draw(at: CGPoint(x: 0, y: 0))
+            attributedString.draw(with: CGRect(x: 32, y: 32, width: 448, height: 448), options: .usesLineFragmentOrigin, context: nil)
+        }
+        
+        guard let image = renderedImage.jpegData(compressionQuality: 0.8) else {
+            print("No image rendered")
             return
         }
         
-        let vc = UIActivityViewController(activityItems: [image, selectedImage], applicationActivities: [])
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }
