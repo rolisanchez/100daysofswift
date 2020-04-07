@@ -7,16 +7,43 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class ViewController: UICollectionViewController {
     var people = [Person]()
+    var unlockedApp = false {
+        didSet {
+            if unlockedApp {
+                authenticateButton.isEnabled = false
+                addNewPersonButton.isEnabled = true
+                collectionView.isHidden = false
+            } else {
+                authenticateButton.isEnabled = true
+                addNewPersonButton.isEnabled = false
+                collectionView.isHidden = true
+            }
+        }
+    }
+    
+    var addNewPersonButton: UIBarButtonItem!
+    var authenticateButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        authenticateButton = UIBarButtonItem(title: "Authenticate", style: .plain, target: self, action: #selector(authenticate))
+        navigationItem.rightBarButtonItem = authenticateButton
+
+        addNewPersonButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        addNewPersonButton.isEnabled = false
+        navigationItem.leftBarButtonItem = addNewPersonButton
         collectionView.backgroundColor = .black
+        collectionView.isHidden = true
+        // This will tell us when the application will stop being active – i.e., when our app has been backgrounded or the user has switched to multitasking mode.
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(lockApp), name: UIApplication.willResignActiveNotification, object: nil)
     }
+    
     // MARK: Functions
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
@@ -26,6 +53,39 @@ class ViewController: UICollectionViewController {
             picker.sourceType = .camera
         }
         present(picker, animated: true)
+    }
+    
+    @objc func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
+            let reason = "Identify yourself!"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self?.unlockedApp = true
+                    } else {
+                        // Error
+                        let ac = UIAlertController(title: "Authentication failed", message: "You could not be verified; please try again.", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.present(ac, animated: true)
+                    }
+                }
+            }
+        } else {
+            // No biometry
+            let ac = UIAlertController(title: "Biometry unavailable", message: "Your device is not configured for biometric authentication.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
+    }
+    
+    @objc func lockApp(){
+        unlockedApp = false
     }
     
     // MARK: Collection View
