@@ -15,6 +15,8 @@
 		DB30693B243D99DF000598B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB30693A243D99DF000598B5 /* Assets.xcassets */; };
 		DB30693E243D99DF000598B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB30693C243D99DF000598B5 /* LaunchScreen.storyboard */; };
 		DB306946243D9A64000598B5 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB306945243D9A64000598B5 /* BuildingNode.swift */; };
+		DB306949243EE0CA000598B5 /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = DB306947243EE0C9000598B5 /* hitPlayer.sks */; };
+		DB30694A243EE0CA000598B5 /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = DB306948243EE0C9000598B5 /* hitBuilding.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		DB30693D243D99DF000598B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB30693F243D99DF000598B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB306945243D9A64000598B5 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
+		DB306947243EE0C9000598B5 /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
+		DB306948243EE0C9000598B5 /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				DB30693A243D99DF000598B5 /* Assets.xcassets */,
 				DB30693C243D99DF000598B5 /* LaunchScreen.storyboard */,
 				DB30693F243D99DF000598B5 /* Info.plist */,
+				DB306948243EE0C9000598B5 /* hitBuilding.sks */,
+				DB306947243EE0C9000598B5 /* hitPlayer.sks */,
 			);
 			path = Project29;
 			sourceTree = "<group>";
@@ -133,8 +139,10 @@
 			files = (
 				DB306939243D99DE000598B5 /* Main.storyboard in Resources */,
 				DB306930243D99DE000598B5 /* GameScene.sks in Resources */,
+				DB306949243EE0CA000598B5 /* hitPlayer.sks in Resources */,
 				DB30693B243D99DF000598B5 /* Assets.xcassets in Resources */,
 				DB30693E243D99DF000598B5 /* LaunchScreen.storyboard in Resources */,
+				DB30694A243EE0CA000598B5 /* hitBuilding.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
