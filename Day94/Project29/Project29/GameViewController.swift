@@ -21,6 +21,23 @@ class GameViewController: UIViewController {
     @IBOutlet weak var launchButton: UIButton!
     @IBOutlet weak var playerNumber: UILabel!
     
+    
+    @IBOutlet weak var player1ScoreLabel: UILabel!
+    @IBOutlet weak var player2ScoreLabel: UILabel!
+    
+    var player1Score = 0 {
+        didSet {
+            player1ScoreLabel.text = "Player 1 Score: \(player1Score)"
+        }
+    }
+    var player2Score = 0 {
+        didSet {
+            player2ScoreLabel.text = "Player 2 Score: \(player2Score)"
+        }
+    }
+    
+    @IBOutlet weak var windLabel: UILabel!
+    
     // MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +64,15 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let xWind = CGFloat.random(in: -4...4)
+        let yWind = CGFloat.random(in: -4...0)
+        
+        print("xWind \(xWind)")
+        windLabel.text = "WIND: \(abs(xWind).rounded()) \(xWind > 0 ? "RIGHT" : "LEFT") \(abs(yWind).rounded()) \(yWind > 0 ? "UP" : "DOWN")"
+        currentGame.windVector = CGVector(dx: xWind, dy: yWind)
     }
 
     override var shouldAutorotate: Bool {
