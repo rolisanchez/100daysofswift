@@ -10,7 +10,9 @@ import UIKit
 
 class SelectionViewController: UITableViewController {
     var items = [String]() // this is the array that will store the filenames to load
-    var viewControllers = [UIViewController]() // create a cache of the detail view controllers for faster loading
+    var images = [UIImage]()
+    // viewControllers: THIS SHOULDNT BE HERE AND IS USELESS. CREATES MEMORY THAT IS NOT USED
+//    var viewControllers = [UIViewController]() // create a cache of the detail view controllers for faster loading
     var dirty = false
     
     override func viewDidLoad() {
@@ -24,14 +26,14 @@ class SelectionViewController: UITableViewController {
         // load all the JPEGs into our array
         let fm = FileManager.default
         
-        if let tempItems = try? fm.contentsOfDirectory(atPath: Bundle.main.resourcePath!) {
+        if let resourcePath = Bundle.main.resourcePath, let tempItems = try? fm.contentsOfDirectory(atPath: resourcePath) {
             for item in tempItems {
                 if item.range(of: "Large") != nil {
                     items.append(item)
                 }
             }
         }
-        
+        loadOrPrepareImages()
         // Alternative 1
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
@@ -46,6 +48,67 @@ class SelectionViewController: UITableViewController {
         }
     }
     
+    func loadOrPrepareImages(){
+        for item in items {
+            let savePath = getDocumentsDirectory().appendingPathComponent(item)
+            
+            // Check if image does not exist
+            if let img = UIImage(contentsOfFile: savePath.path) {
+                images.append(img)
+            } else {
+                print("Image does not exist yet")
+                let imageRootName = item.replacingOccurrences(of: "Large", with: "Thumb")
+                
+                guard let path = Bundle.main.path(forResource: imageRootName, ofType: nil) else {
+                    fatalError("Path not found")
+                }
+                guard let original = UIImage(contentsOfFile: path) else {
+                    fatalError("UIImage not found")
+                }
+                
+                // THIS WAS TOO LARGE
+                //        let renderer = UIGraphicsImageRenderer(size: original.size)
+                
+                let renderRect = CGRect(origin: .zero, size: CGSize(width: 90, height: 90))
+                let renderer = UIGraphicsImageRenderer(size: renderRect.size)
+                let rounded = renderer.image { ctx in
+                    ctx.cgContext.addEllipse(in: renderRect)
+                    ctx.cgContext.clip()
+                    
+                    original.draw(in: renderRect)
+                }
+                
+//                if let jpegData = rounded.jpegData(compressionQuality: 0.8) {
+//                    try? jpegData.write(to: savePath)
+//                }
+                
+                if let pngData = rounded.pngData(){
+                    try? pngData.write(to: savePath)
+                }
+                
+                images.append(rounded)
+    //        let rounded = renderer.image { ctx in
+    // TRY TO ADD THIS SHADOW FOR PERFORMANCE -> DOES NOT LOOK GOOD
+    //            ctx.cgContext.setShadow(offset: CGSize.zero, blur: 200, color: UIColor.black.cgColor)
+    //            ctx.cgContext.fillEllipse(in: CGRect(origin: CGPoint.zero, size: original.size))
+    //            ctx.cgContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)
+    
+    //            ctx.cgContext.addEllipse(in: CGRect(origin: CGPoint.zero, size: original.size))
+    //            ctx.cgContext.clip()
+    //
+    //            original.draw(at: CGPoint.zero)
+                //        }
+            }
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,7 +118,7 @@ class SelectionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return items.count * 10
+        return images.count * 10
     }
     
     
@@ -74,37 +137,12 @@ class SelectionViewController: UITableViewController {
         
         // find the image for this cell, and load its thumbnail
         let currentImage = items[indexPath.row % items.count]
-        let imageRootName = currentImage.replacingOccurrences(of: "Large", with: "Thumb")
-        let path = Bundle.main.path(forResource: imageRootName, ofType: nil)!
-        let original = UIImage(contentsOfFile: path)!
-        
-        // THIS WAS TOO LARGE
-        //		let renderer = UIGraphicsImageRenderer(size: original.size)
-        
-        let renderRect = CGRect(origin: .zero, size: CGSize(width: 90, height: 90))
-        let renderer = UIGraphicsImageRenderer(size: renderRect.size)
-        let rounded = renderer.image { ctx in
-            ctx.cgContext.addEllipse(in: renderRect)
-            ctx.cgContext.clip()
-            
-            original.draw(in: renderRect)
-        }
-        
-        
-//        let rounded = renderer.image { ctx in
-            // TRY TO ADD THIS SHADOW FOR PERFORMANCE -> DOES NOT LOOK GOOD
-            //            ctx.cgContext.setShadow(offset: CGSize.zero, blur: 200, color: UIColor.black.cgColor)
-            //            ctx.cgContext.fillEllipse(in: CGRect(origin: CGPoint.zero, size: original.size))
-            //            ctx.cgContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)
-            
-//            ctx.cgContext.addEllipse(in: CGRect(origin: CGPoint.zero, size: original.size))
-//            ctx.cgContext.clip()
-//
-//            original.draw(at: CGPoint.zero)
-//        }
-        
+        let rounded = images[indexPath.row % items.count]
+
         cell.imageView?.image = rounded
         
+        let renderRect = CGRect(origin: .zero, size: CGSize(width: 90, height: 90))
+
         // TRY TO REMOVE THIS SHADOW FOR PERFORMANCE?
         // give the images a nice shadow to make them look a bit more dramatic
 //        cell.imageView?.layer.shadowColor = UIColor.black.cgColor
@@ -133,8 +171,12 @@ class SelectionViewController: UITableViewController {
         // mark us as not needing a counter reload when we return
         dirty = false
         
+        // viewControllers THIS SHOULDNT BE HERE AND IS USELESS. CREATES MEMORY THAT IS NOT USED
         // add to our view controller cache and show
-        viewControllers.append(vc)
-        navigationController!.pushViewController(vc, animated: true)
+//        viewControllers.append(vc)
+        if let navigationController = navigationController {
+            navigationController.pushViewController(vc, animated: true)
+        }
+        
     }
 }
