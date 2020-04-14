@@ -1,0 +1,6 @@
+Taiwan: Taipei
+Paraguay: Asuncion
+Kosovo: Prishtina
+England: London
+Germany: Berlin
+Brazil: Brasilia
